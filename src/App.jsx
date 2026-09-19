@@ -1,11 +1,16 @@
-import "./App.css";
+import { CloudWash } from "./components/CloudWash";
+import { ForegroundClouds } from "./components/hero/ForegroundClouds";
+import { HeroSection } from "./components/hero/HeroSection";
+import { useParallaxLayer } from "./hooks/useParallaxLayer";
 
 function App() {
+  useParallaxLayer();
+
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-gray-100">
-      <section className="flex items-center justify-center w-full h-full">
-        <h1 className="text-2xl">FraserHacks 27!!</h1>
-      </section>
+    <div className="page">
+      <HeroSection />
+      <CloudWash />
+      <ForegroundClouds />
     </div>
   );
 }

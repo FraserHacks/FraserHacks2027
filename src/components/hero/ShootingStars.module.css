@@ -1,0 +1,67 @@
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  transform: rotate(var(--angle));
+  animation: shoot var(--duration) ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.trail {
+  width: var(--trail);
+  height: 1.25px;
+  margin-right: -1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to left,
+    rgba(255, 254, 248, 0.92) 0%,
+    rgba(255, 244, 210, 0.45) 42%,
+    transparent 100%
+  );
+  box-shadow: 0 0 5px 0.5px rgba(255, 248, 220, 0.45);
+}
+
+.head {
+  width: var(--size);
+  height: var(--size);
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #fffef8;
+  box-shadow:
+    0 0 4px 1px rgba(255, 252, 240, 0.9),
+    0 0 10px 3px rgba(255, 236, 180, 0.35);
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(0);
+  }
+
+  8% {
+    opacity: 0.95;
+  }
+
+  22% {
+    opacity: 0.7;
+  }
+
+  32% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(var(--travel));
+  }
+
+  32.01%,
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(var(--travel));
+  }
+}

@@ -1,0 +1,5 @@
+.wash {
+  position: relative;
+  min-height: 220vh;
+  pointer-events: none;
+}

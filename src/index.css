@@ -1,1 +1,74 @@
 @import "tailwindcss";
+
+@theme {
+  --animate-twinkle: twinkle 3.6s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+html {
+  --scroll-y: 0px;
+}
+
+[data-parallax="background"] {
+  transform: translate3d(0, calc(var(--scroll-y, 0px) * -0.1), 0);
+}
+
+[data-parallax="main"] {
+  transform: translate3d(0, calc(var(--scroll-y, 0px) * -0.3), 0);
+}
+
+[data-parallax="midground"] {
+  transform: translate3d(0, calc(var(--scroll-y, 0px) * -0.38), 0);
+}
+
+[data-parallax="foreground"] {
+  transform: translate3d(0, calc(var(--scroll-y, 0px) * -0.5), 0);
+}
+
+html.is-scrolling [data-parallax] {
+  will-change: transform;
+}
+
+html.page-hidden * {
+  animation-play-state: paused !important;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100dvh;
+  min-height: 100vh;
+  background: #3f36b8;
+}
+
+.page {
+  position: relative;
+  min-height: 100dvh;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-twinkle {
+    animation: none;
+    opacity: 0.85;
+    transform: none;
+  }
+}

@@ -1,0 +1,84 @@
+.lockup {
+  position: relative;
+  width: min(86vw, 720px);
+}
+
+.supportLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mainLayer {
+  position: relative;
+}
+
+.cloudSupport {
+  position: absolute;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.mark {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+}
+
+.logoWrap {
+  display: block;
+  width: min(78vw, 680px);
+  margin-inline: auto;
+  animation: logoFloat 7s ease-in-out infinite;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(59, 45, 91, 0.22));
+  pointer-events: auto;
+}
+
+.comingSoon {
+  position: relative;
+  z-index: 2;
+  margin: -7.2rem 0 0;
+  font-family: "Fredoka", "Quicksand", system-ui, sans-serif;
+  font-size: clamp(1.05rem, 2.6vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #fff8fc;
+  text-shadow: 0 2px 14px rgba(72, 42, 118, 0.32);
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 720px) {
+  .logoWrap {
+    width: min(86vw, 540px);
+  }
+
+  .comingSoon {
+    margin-top: -3.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoWrap {
+    animation: none;
+  }
+}

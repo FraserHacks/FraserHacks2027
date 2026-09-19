@@ -1,0 +1,27 @@
+.fade {
+  position: absolute;
+  inset-inline: 0;
+  top: 93%;
+  height: 220vh;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 5%,
+    rgba(255, 255, 255, 0.82) 11%,
+    #ffffff 18%,
+    #f3f3f5 38%,
+    #ffffff 62%,
+    #f6f6f8 100%
+  );
+}
+
+.spots {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 18% at 18% 12%, rgba(168, 170, 176, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 36% 16% at 78% 10%, rgba(176, 176, 182, 0.24) 0%, transparent 68%),
+    radial-gradient(ellipse 48% 20% at 52% 28%, rgba(186, 186, 192, 0.2) 0%, transparent 72%),
+    radial-gradient(ellipse 34% 16% at 12% 48%, rgba(160, 162, 168, 0.26) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 18% at 86% 42%, rgba(172, 174, 180, 0.22) 0%, transparent 68%);
+}

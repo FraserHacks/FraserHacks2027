@@ -1,0 +1,545 @@
+.ocean {
+  --horizon: 69%;
+  --sky-gradient: linear-gradient(
+    180deg in oklab,
+    #3f36b8 0%,
+    #5a4adf 10%,
+    #7a66f0 22%,
+    #a07af8 36%,
+    #d08cf8 50%,
+    #f090e4 62%,
+    #fc9ad0 72%,
+    #ffb8d6 84%,
+    #ffc8dc 94%
+  );
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  contain: paint;
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--sky-gradient);
+}
+
+.topShade {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 1;
+  width: 100%;
+  height: 42%;
+  background: linear-gradient(
+    180deg,
+    rgba(28, 22, 92, 0.42) 0%,
+    rgba(62, 48, 150, 0.18) 46%,
+    rgba(62, 48, 150, 0) 100%
+  );
+}
+
+.skyClouds {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+.skyCloud {
+  position: absolute;
+  height: auto;
+  max-width: none;
+  animation: cloudDrift 34s ease-in-out infinite;
+}
+
+.skyCloudFlipped {
+  animation-name: cloudDriftFlipped;
+}
+
+.sunGlow {
+  position: absolute;
+  left: 50%;
+  top: var(--horizon);
+  z-index: 3;
+  width: clamp(320px, 42vmin, 620px);
+  height: clamp(320px, 42vmin, 620px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 248, 0.95) 0%,
+    rgba(255, 248, 220, 0.62) 14%,
+    rgba(255, 220, 120, 0.32) 30%,
+    rgba(255, 186, 64, 0.16) 48%,
+    rgba(255, 168, 80, 0.06) 68%,
+    rgba(255, 150, 120, 0) 100%
+  );
+}
+
+.sun {
+  position: absolute;
+  left: 50%;
+  top: var(--horizon);
+  z-index: 4;
+  width: clamp(78px, 8.6vmin, 152px);
+  height: clamp(78px, 8.6vmin, 152px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 32%,
+    #ffffff 0%,
+    #fffef6 42%,
+    #fff8e0 68%,
+    #ffe566 86%,
+    #f0b429 100%
+  );
+  box-shadow:
+    0 0 22px rgba(255, 244, 210, 0.7),
+    0 0 54px rgba(255, 210, 96, 0.38),
+    0 0 90px rgba(255, 176, 64, 0.2);
+  transform: translate(-50%, -50%);
+}
+
+.waterline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--horizon);
+  bottom: 0;
+  z-index: 5;
+  overflow: visible;
+}
+
+.waterClip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: url("#waterTopClip");
+}
+
+.water {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-filter: url("#waterWobble");
+  filter: url("#waterWobble");
+  background: linear-gradient(
+    180deg in oklab,
+    #cbb6dc 0%,
+    #9eacd0 12%,
+    #6d88b0 28%,
+    #4a6790 50%,
+    #334e78 74%,
+    #24385c 100%
+  );
+}
+
+.waterStatic {
+  -webkit-filter: none;
+  filter: none;
+}
+
+@media (max-width: 720px) {
+  .water {
+    -webkit-filter: none;
+    filter: none;
+  }
+
+  .sunConeLight,
+  .reflectedSun {
+    filter: none;
+  }
+}
+
+.waterTint {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg in oklab,
+    rgba(220, 170, 204, 0.1) 0%,
+    rgba(90, 120, 168, 0.16) 16%,
+    rgba(36, 58, 98, 0.32) 42%,
+    rgba(24, 42, 74, 0.52) 100%
+  );
+}
+
+.waterReflection {
+  position: absolute;
+  inset: -8% -4%;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.9) 14%,
+    rgba(0, 0, 0, 0.5) 48%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.9) 14%,
+    rgba(0, 0, 0, 0.5) 48%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+}
+
+.reflectedSky {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 100dvh);
+  height: 100dvh;
+  min-height: 100vh;
+  background: var(--sky-gradient);
+  transform: scaleY(-1);
+  transform-origin: 50% var(--horizon);
+  filter: saturate(0.94) brightness(0.88);
+}
+
+.reflectedSun {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: clamp(130px, 18vmin, 280px);
+  height: clamp(100px, 18vh, 230px);
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at top,
+    rgba(255, 252, 240, 0.5) 0%,
+    rgba(255, 236, 176, 0.24) 28%,
+    rgba(255, 214, 150, 0.1) 52%,
+    transparent 76%
+  );
+  filter: blur(4px);
+}
+
+.sunCone {
+  position: absolute;
+  inset: -4% 0 -6%;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.7) 22%,
+    rgba(0, 0, 0, 0.38) 62%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.7) 22%,
+    rgba(0, 0, 0, 0.38) 62%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+.sunConeLight {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(236, 232, 214, 0.42) 0%,
+      rgba(210, 214, 200, 0.26) 16%,
+      rgba(176, 190, 196, 0.16) 42%,
+      rgba(148, 168, 186, 0.1) 70%,
+      rgba(120, 148, 172, 0.04) 100%
+    );
+  clip-path: polygon(48.8% 0%, 51.2% 0%, 57.5% 100%, 42.5% 100%);
+  filter: blur(8px);
+  -webkit-mask-image: repeating-linear-gradient(
+    to bottom,
+    black 0px,
+    black 7px,
+    rgba(0, 0, 0, 0.35) 11px,
+    black 16px,
+    black 24px,
+    rgba(0, 0, 0, 0.2) 28px
+  );
+  mask-image: repeating-linear-gradient(
+    to bottom,
+    black 0px,
+    black 7px,
+    rgba(0, 0, 0, 0.35) 11px,
+    black 16px,
+    black 24px,
+    rgba(0, 0, 0, 0.2) 28px
+  );
+}
+
+.waterSurface {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -24px;
+  height: calc(100% + 48px);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(198, 224, 242, 0.07) 0px,
+      transparent 4px,
+      transparent 15px,
+      rgba(16, 32, 62, 0.1) 17px,
+      transparent 21px,
+      transparent 39px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 9px,
+      rgba(133, 181, 222, 0.08) 11px,
+      transparent 14px,
+      transparent 47px
+    );
+  animation: rippleShift 11s linear infinite;
+}
+
+.waterTexture {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -24px;
+  height: calc(100% + 48px);
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 8px,
+      rgba(210, 230, 245, 0.11) 9px,
+      transparent 12px,
+      transparent 27px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 18px,
+      rgba(28, 48, 86, 0.16) 20px,
+      transparent 24px,
+      transparent 51px
+    );
+  animation: rippleShift 14s linear infinite reverse;
+}
+
+.waterHighlights {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 5;
+  width: clamp(280px, 64vmin, 1040px);
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.82;
+  mix-blend-mode: screen;
+  animation: highlightFieldDrift 13s ease-in-out infinite;
+}
+
+.highlight {
+  position: absolute;
+  height: clamp(4px, 0.7vmin, 9px);
+  border-radius: 999px;
+  transform: translateX(-50%);
+  opacity: var(--highlight-opacity, 0.7);
+  background: linear-gradient(
+    to right,
+    rgba(255, 214, 96, 0) 0%,
+    rgba(255, 220, 140, 0.9) 18%,
+    rgba(255, 242, 196, 0.98) 50%,
+    rgba(255, 210, 110, 0.88) 82%,
+    rgba(255, 196, 80, 0) 100%
+  );
+  animation: highlightShimmer 7s ease-in-out infinite;
+}
+
+.waterStreaks {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+.waterStreak {
+  position: absolute;
+  border-radius: var(--streak-radius, 999px);
+  transform: translateX(-50%) rotate(var(--streak-rotate, 0deg));
+  opacity: var(--streak-opacity, 0.32);
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--streak-color) 20%,
+    var(--streak-mid) 50%,
+    var(--streak-color) 80%,
+    transparent 100%
+  );
+  animation: streakDrift 11s ease-in-out infinite;
+}
+
+.horizonGlow {
+  position: absolute;
+  left: 50%;
+  right: auto;
+  top: -5px;
+  z-index: 6;
+  width: 60%;
+  height: 12px;
+  pointer-events: none;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse 58% 6px at 50% 50%,
+    rgba(255, 253, 248, 0.78) 0%,
+    rgba(255, 250, 228, 0.38) 16%,
+    rgba(255, 246, 210, 0.1) 38%,
+    transparent 58%
+  );
+  mix-blend-mode: screen;
+}
+
+.horizonGlow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 252, 244, 0.06) 10%,
+    rgba(255, 253, 248, 0.5) 28%,
+    rgba(255, 254, 250, 0.88) 50%,
+    rgba(255, 253, 248, 0.5) 72%,
+    rgba(255, 252, 244, 0.06) 90%,
+    transparent 100%
+  );
+}
+
+.waterFilter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+@keyframes cloudDrift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(18px);
+  }
+}
+
+@keyframes cloudDriftFlipped {
+  0%,
+  100% {
+    transform: scaleX(-1);
+  }
+
+  50% {
+    transform: scaleX(-1) translateX(18px);
+  }
+}
+
+@keyframes rippleShift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -42px, 0);
+  }
+}
+
+@keyframes highlightFieldDrift {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(calc(-50% + 5px)) translateY(3px);
+  }
+}
+
+@keyframes highlightShimmer {
+  0%,
+  100% {
+    transform: translateX(-50%);
+    opacity: var(--highlight-opacity, 0.7);
+  }
+
+  35% {
+    transform: translateX(calc(-50% + 7px)) scaleX(1.08);
+    opacity: calc(var(--highlight-opacity, 0.7) * 0.72);
+  }
+
+  68% {
+    transform: translateX(calc(-50% - 6px)) scaleX(0.94);
+    opacity: calc(var(--highlight-opacity, 0.7) * 1.08);
+  }
+}
+
+@keyframes streakDrift {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(var(--streak-rotate, 0deg));
+    opacity: var(--streak-opacity, 0.32);
+  }
+
+  50% {
+    transform: translateX(calc(-50% + 8px)) rotate(var(--streak-rotate, 0deg));
+    opacity: calc(var(--streak-opacity, 0.32) * 1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skyCloud,
+  .sunCone,
+  .waterSurface,
+  .waterTexture,
+  .waterHighlights,
+  .highlight,
+  .waterStreak {
+    animation: none;
+  }
+
+  .water {
+    -webkit-filter: none;
+    filter: none;
+  }
+
+  .skyCloudFlipped {
+    transform: scaleX(-1);
+  }
+
+  .waterHighlights {
+    transform: translateX(-50%);
+  }
+}
