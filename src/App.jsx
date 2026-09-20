@@ -1,5 +1,5 @@
 import { CloudWash } from "./components/CloudWash";
-import { ForegroundClouds } from "./components/hero/ForegroundClouds";
+import { CursorBat } from "./components/CursorBat";
 import { HeroSection } from "./components/hero/HeroSection";
 import { useParallaxLayer } from "./hooks/useParallaxLayer";
 
@@ -10,7 +10,7 @@ function App() {
     <div className="page">
       <HeroSection />
       <CloudWash />
-      <ForegroundClouds />
+      <CursorBat />
     </div>
   );
 }

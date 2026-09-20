@@ -1,6 +1,7 @@
-import cloudPuff from "../../assets/images/cloud-puff.webp";
-import cloudLong from "../../assets/images/cloud-long.webp";
-import cloudTall from "../../assets/images/cloud-tall.webp";
+import cloudPuff from "../../assets/images/clouds/puff.webp";
+import cloudLong from "../../assets/images/clouds/long.webp";
+import cloudTall from "../../assets/images/clouds/tall.webp";
+import cloudSwell from "../../assets/images/clouds/swell.webp";
 import { useLiteEffects } from "../../hooks/useLiteEffects";
 import { ParallaxLayer } from "./ParallaxLayer";
 import { ShootingStars } from "./ShootingStars";
@@ -55,7 +56,7 @@ const SKY_CLOUDS = [
     top: "-6%",
     left: "-8%",
     width: "clamp(280px, 44vmin, 640px)",
-    opacity: 0.72,
+    opacity: 0.74,
     duration: "32s",
     delay: "-4s",
   },
@@ -66,7 +67,7 @@ const SKY_CLOUDS = [
     top: "2%",
     left: "58%",
     width: "clamp(260px, 42vmin, 620px)",
-    opacity: 0.66,
+    opacity: 0.7,
     flipped: true,
     duration: "38s",
     delay: "-12s",
@@ -75,24 +76,40 @@ const SKY_CLOUDS = [
     src: cloudTall,
     widthPx: 1188,
     heightPx: 748,
-    top: "12%",
-    left: "-12%",
+    top: "16%",
+    left: "70%",
     width: "clamp(200px, 28vmin, 420px)",
-    opacity: 0.46,
+    opacity: 0.68,
+    flipped: true,
     duration: "40s",
     delay: "-22s",
   },
   {
+    src: cloudSwell,
+    widthPx: 1185,
+    heightPx: 665,
+    top: "30%",
+    left: "-6%",
+    width: "clamp(200px, 30vmin, 440px)",
+    opacity: 0.7,
+    duration: "36s",
+    delay: "-16s",
+  },
+];
+
+const MIDGROUND_CLOUDS = [
+  {
     src: cloudLong,
     widthPx: 1040,
     heightPx: 412,
-    top: "20%",
-    left: "76%",
-    width: "clamp(200px, 28vmin, 420px)",
-    opacity: 0.5,
+    top: "38%",
+    left: "50%",
+    width: "clamp(680px, 76vmin, 1180px)",
+    opacity: 0.9,
     flipped: true,
-    duration: "36s",
-    delay: "-8s",
+    centered: true,
+    duration: "42s",
+    delay: "-14s",
   },
 ];
 
@@ -128,8 +145,34 @@ export function OceanBackground() {
         ))}
       </ParallaxLayer>
 
+      <ParallaxLayer layer="midground" className={styles.midClouds}>
+        {MIDGROUND_CLOUDS.map((cloud) => (
+          <img
+            key={`${cloud.top}-${cloud.left}`}
+            src={cloud.src}
+            alt=""
+            width={cloud.widthPx}
+            height={cloud.heightPx}
+            decoding="async"
+            fetchPriority="low"
+            draggable={false}
+            className={`${styles.skyCloud} ${cloud.flipped ? styles.skyCloudFlipped : ""} ${cloud.centered ? styles.skyCloudCentered : ""} ${cloud.centered ? styles.logoCloud : ""}`}
+            style={{
+              top: cloud.centered ? undefined : cloud.top,
+              left: cloud.left,
+              width: cloud.width,
+              opacity: cloud.opacity,
+              animationDuration: cloud.duration,
+              animationDelay: cloud.delay,
+              zIndex: cloud.zIndex,
+            }}
+          />
+        ))}
+      </ParallaxLayer>
+
       <ShootingStars />
 
+      <div className={styles.sunGlowOuter} />
       <div className={styles.sunGlow} />
       <div className={styles.sun} />
 

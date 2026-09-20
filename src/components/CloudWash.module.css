@@ -1,5 +1,7 @@
 .wash {
   position: relative;
+  z-index: 5;
   min-height: 220vh;
-  pointer-events: none;
+  overflow: visible;
+  background: transparent;
 }

@@ -1,0 +1,22 @@
+.bat {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+
+.sprite {
+  display: block;
+  width: clamp(140px, 18vmin, 240px);
+  height: auto;
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bat {
+    transition: none;
+  }
+}
