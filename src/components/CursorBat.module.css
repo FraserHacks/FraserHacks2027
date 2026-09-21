@@ -10,7 +10,7 @@
 
 .sprite {
   display: block;
-  width: clamp(140px, 18vmin, 240px);
+  width: clamp(120px, 16vmin, 210px);
   height: auto;
   mix-blend-mode: screen;
 }
