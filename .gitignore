@@ -26,3 +26,4 @@ dist-ssr
 # Micromanagers' Assignments
 .env*.local
 .env
+.vercel
