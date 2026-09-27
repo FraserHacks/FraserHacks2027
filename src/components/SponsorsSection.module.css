@@ -158,6 +158,37 @@
   background: rgba(255, 255, 255, 0.24);
 }
 
+.link {
+  position: relative;
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: 3px solid #c47ad4;
+  outline-offset: 3px;
+}
+
+.linkIcon {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  font-family: "Fredoka", "Quicksand", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff8fc;
+  opacity: 0.55;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.link:hover .linkIcon,
+.link:focus-visible .linkIcon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
 .gold .card {
   height: 220px;
   padding: 2.4rem 3rem;
@@ -234,6 +265,12 @@
   .bronze,
   .other {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .linkIcon {
+    top: 0.35rem;
+    right: 0.5rem;
+    font-size: 0.75rem;
   }
 
   .card,

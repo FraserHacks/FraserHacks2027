@@ -13,6 +13,7 @@ import styles from "./SponsorsSection.module.css";
 const SILVER_SPONSORS = [
   {
     name: "ICUBE UTM",
+    href: "https://www.icubeutm.ca/",
     src: logoIcube,
   },
 ];
@@ -20,25 +21,35 @@ const SILVER_SPONSORS = [
 const OTHER_SPONSORS = [
   {
     name: "n8n",
+    href: "https://n8n.io/",
     src: logoN8n,
   },
   {
     name: "CodeCrafters",
+    href: "https://codecrafters.io/",
     src: logoCodecrafters,
   },
   {
     name: "Interview Buddy",
+    href: "https://interviewbuddy.net/",
     src: logoInterviewBuddy,
   },
   {
     name: "ElevenLabs",
+    href: "https://elevenlabs.io/",
     src: logoElevenLabs,
   },
 ];
 
-function SponsorCard({ name, src }) {
+function SponsorCard({ name, src, href }) {
   return (
-    <article className={styles.card}>
+    <a
+      className={`${styles.card} ${styles.link}`}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${name} (opens in a new tab)`}
+    >
       <img
         className={styles.logo}
         src={src}
@@ -47,7 +58,10 @@ function SponsorCard({ name, src }) {
         decoding="async"
         draggable={false}
       />
-    </article>
+      <span className={styles.linkIcon} aria-hidden="true">
+        ↗
+      </span>
+    </a>
   );
 }
 

@@ -16,6 +16,7 @@ const HOP_MAX = 80;
 const DIP_PX = 14;
 const TILT_MAX = 45;
 const TILT_EASE = 0.16;
+const FINE_POINTER = "(hover: hover) and (pointer: fine)";
 
 FRAMES.forEach((src) => {
   const preload = new Image();
@@ -45,7 +46,7 @@ export function CursorBat() {
   useEffect(() => {
     const bat = batRef.current;
     const img = imgRef.current;
-    if (!bat || !img) {
+    if (!bat || !img || !window.matchMedia(FINE_POINTER).matches) {
       return undefined;
     }
 

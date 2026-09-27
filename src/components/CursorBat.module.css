@@ -14,3 +14,9 @@
   height: auto;
   mix-blend-mode: screen;
 }
+
+@media (hover: none), (pointer: coarse) {
+  .bat {
+    display: none;
+  }
+}

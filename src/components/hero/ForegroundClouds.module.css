@@ -4,7 +4,8 @@
   right: 0;
   top: -42vh;
   height: 52vh;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
   pointer-events: none;
   z-index: 2;
 }
