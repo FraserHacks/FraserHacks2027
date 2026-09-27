@@ -164,7 +164,6 @@ export function OceanBackground() {
               opacity: cloud.opacity,
               animationDuration: cloud.duration,
               animationDelay: cloud.delay,
-              zIndex: cloud.zIndex,
             }}
           />
         ))}

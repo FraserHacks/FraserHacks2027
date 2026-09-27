@@ -14,9 +14,3 @@
   height: auto;
   mix-blend-mode: screen;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .bat {
-    transition: none;
-  }
-}

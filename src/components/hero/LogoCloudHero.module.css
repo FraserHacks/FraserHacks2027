@@ -46,6 +46,47 @@
     0 8px 28px rgba(255, 176, 80, 0.28);
 }
 
+.previous {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  font-family: "Fredoka", "Quicksand", system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.previousText {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+  letter-spacing: 0.04em;
+  color: #fff8fc;
+  text-shadow: 0 2px 12px rgba(72, 42, 118, 0.35);
+}
+
+.previousLink {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a07af8, #f090e4);
+  color: #fffdf8;
+  font-size: clamp(0.82rem, 1.5vw, 1.05rem);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(90, 74, 223, 0.32);
+  transition: filter 0.2s ease;
+}
+
+.previousLink:hover {
+  filter: brightness(1.08);
+}
+
+.previousLink:focus-visible {
+  outline: 3px solid #fff8fc;
+  outline-offset: 3px;
+}
+
 @keyframes logoFloat {
   0%,
   100% {

@@ -48,7 +48,6 @@ function onVisibility() {
 
 export function useParallaxLayer() {
   const prefersReduced = usePrefersReducedMotion();
-  reduceMotion = prefersReduced;
 
   useEffect(() => {
     reduceMotion = prefersReduced;

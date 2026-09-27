@@ -38,6 +38,17 @@ export function LogoCloudHero() {
           </span>
         </h1>
         <p className={styles.comingSoon}>site coming soon!</p>
+        <div className={styles.previous}>
+          <p className={styles.previousText}>check out our previous event!</p>
+          <a
+            className={styles.previousLink}
+            href="https://2026.fraserhacks.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            2026.fraserhacks.dev
+          </a>
+        </div>
       </ParallaxLayer>
     </div>
   );
