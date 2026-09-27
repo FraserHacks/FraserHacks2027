@@ -1,6 +1,6 @@
-export function ParallaxLayer({ layer, className, style, children }) {
+export function ParallaxLayer({ layer, className, children }) {
   return (
-    <div data-parallax={layer} className={className} style={style}>
+    <div data-parallax={layer} className={className}>
       {children}
     </div>
   );

@@ -1,9 +1,9 @@
 import cloudPlump from "../assets/images/clouds/plump.webp";
 import logoCodecrafters from "../assets/images/sponsors/codecrafters.svg";
-import logoElevenLabs from "../assets/images/sponsors/elevenlabs.png";
-import logoIcube from "../assets/images/sponsors/icube.png";
+import logoElevenLabs from "../assets/images/sponsors/elevenlabs.webp";
+import logoIcube from "../assets/images/sponsors/icube.webp";
 import logoInterviewBuddy from "../assets/images/sponsors/interview_buddy.webp";
-import logoN8n from "../assets/images/sponsors/n8n.png";
+import logoN8n from "../assets/images/sponsors/n8n.webp";
 import { SparkleStar1 } from "./hero/SparkleStar1";
 import { SparkleStar2 } from "./hero/SparkleStar2";
 import { SparkleStar3 } from "./hero/SparkleStar3";
@@ -43,6 +43,8 @@ function SponsorCard({ name, src }) {
         className={styles.logo}
         src={src}
         alt={name}
+        loading="lazy"
+        decoding="async"
         draggable={false}
       />
     </article>
@@ -87,6 +89,7 @@ export function SponsorsSection() {
             alt=""
             width={1600}
             height={855}
+            loading="lazy"
             decoding="async"
             draggable={false}
           />

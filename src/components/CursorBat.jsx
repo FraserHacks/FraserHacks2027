@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import frame1 from "../assets/images/bat/bat1.PNG";
-import frame2 from "../assets/images/bat/bat2.PNG";
-import frame3 from "../assets/images/bat/bat3.PNG";
-import frame4 from "../assets/images/bat/bat4.PNG";
+import frame1 from "../assets/images/bat/bat1.webp";
+import frame2 from "../assets/images/bat/bat2.webp";
+import frame3 from "../assets/images/bat/bat3.webp";
+import frame4 from "../assets/images/bat/bat4.webp";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import styles from "./CursorBat.module.css";
 
@@ -51,7 +51,6 @@ export function CursorBat() {
 
     let seq = 0;
     let lastFrameAt = 0;
-    let lastTime = 0;
     let x = window.innerWidth * 0.5;
     let y = window.innerHeight * 0.5 - OFFSET_Y;
     let cursorX = window.innerWidth * 0.5;
@@ -100,12 +99,6 @@ export function CursorBat() {
     };
 
     const tick = (now) => {
-      if (!lastTime) {
-        lastTime = now;
-      }
-
-      lastTime = now;
-
       if (!reduceMotion && now - lastFrameAt >= FRAME_MS) {
         lastFrameAt = now;
         const prev = SEQUENCE[seq];
@@ -154,12 +147,10 @@ export function CursorBat() {
 
     img.src = FRAMES[0];
     document.addEventListener("pointermove", onPointerMove, { passive: true });
-    document.addEventListener("mousemove", onPointerMove, { passive: true });
     raf = requestAnimationFrame(tick);
 
     return () => {
       document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("mousemove", onPointerMove);
       cancelAnimationFrame(raf);
     };
   }, [reduceMotion]);

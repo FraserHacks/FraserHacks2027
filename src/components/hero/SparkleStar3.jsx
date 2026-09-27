@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-export function SparkleStar3({ className = "", size = 18 }) {
+export function SparkleStar3({ size = 18 }) {
   const id = useId();
 
   return (
@@ -9,7 +9,6 @@ export function SparkleStar3({ className = "", size = 18 }) {
       height={size}
       viewBox="0 0 32 32"
       fill="none"
-      className={className}
       aria-hidden="true"
       focusable="false"
     >
