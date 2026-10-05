@@ -109,14 +109,6 @@ export function SponsorsSection() {
           />
           <div className={styles.introCopy}>
             <h2 className={styles.introTitle}>Thank you to all our sponsors!</h2>
-            <a
-              className={styles.cta}
-              href="/FH27_Sponsorship.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Become a sponsor
-            </a>
           </div>
         </div>
       </header>

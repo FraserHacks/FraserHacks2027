@@ -69,32 +69,6 @@
   text-shadow: 0 2px 12px rgba(255, 255, 255, 0.85);
 }
 
-.cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  padding: 0.5rem 1.15rem;
-  border-radius: 999px;
-  background: #e8a45c;
-  color: #fffdf8;
-  font-family: "Fredoka", "Quicksand", system-ui, sans-serif;
-  font-size: clamp(0.82rem, 1.6vw, 1.05rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  box-shadow: 0 8px 20px rgba(184, 108, 40, 0.28);
-}
-
-.cta:hover {
-  background: #f0b36e;
-}
-
-.cta:focus-visible {
-  outline: 3px solid #c47ad4;
-  outline-offset: 3px;
-}
-
 .board {
   display: flex;
   flex-direction: column;
@@ -252,10 +226,6 @@
   .introCopy {
     gap: 0.45rem;
     padding: 28% 22% 30%;
-  }
-
-  .cta {
-    padding: 0.42rem 0.9rem;
   }
 
   .grid {

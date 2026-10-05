@@ -1,3 +1,4 @@
+import { InterestButton } from "../interest/InterestButton";
 import { ParallaxLayer } from "./ParallaxLayer";
 import { SparkleStar1 } from "./SparkleStar1";
 import { SparkleStar2 } from "./SparkleStar2";
@@ -37,7 +38,9 @@ export function LogoCloudHero() {
             />
           </span>
         </h1>
-        <p className={styles.comingSoon}>site coming soon!</p>
+        <div className={styles.interest}>
+          <InterestButton />
+        </div>
         <div className={styles.previous}>
           <p className={styles.previousText}>check out our previous event!</p>
           <a
