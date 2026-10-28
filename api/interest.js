@@ -1,5 +1,3 @@
-const BASEROW_URL = "https://api.baserow.io/api/database/rows/table";
-
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 const clean = (value, max) =>
@@ -13,30 +11,33 @@ export default async function handler(req, res) {
 
   const body = req.body ?? {};
   const row = {
-    Name: clean(body.fullName, 120),
-    Email: clean(body.email, 200),
-    Grade: clean(body.grade, 10),
-    School: clean(body.school, 120),
+    name: clean(body.fullName, 120),
+    email: clean(body.email, 200),
+    grade: clean(body.grade, 10),
+    school: clean(body.school, 120),
   };
 
-  if (!row.Name || !isEmail(row.Email) || !row.Grade || !row.School) {
+  if (!row.name || !isEmail(row.email) || !row.grade || !row.school) {
     return res.status(400).json({ error: "Invalid submission" });
   }
 
+  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   const response = await fetch(
-    `${BASEROW_URL}/${process.env.BASEROW_TABLE_ID}/?user_field_names=true`,
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/interest_signups`,
     {
       method: "POST",
       headers: {
-        Authorization: `Token ${process.env.BASEROW_TOKEN}`,
+        apikey: key,
+        Authorization: `Bearer ${key}`,
         "Content-Type": "application/json",
+        Prefer: "return=minimal",
       },
       body: JSON.stringify(row),
     },
   );
 
   if (!response.ok) {
-    console.error("baserow insert failed", response.status, await response.text());
+    console.error("supabase insert failed", response.status, await response.text());
     return res.status(502).json({ error: "Could not save submission" });
   }
 

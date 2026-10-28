@@ -6,6 +6,10 @@ import {
 } from "../../data/mississauga_schools";
 import styles from "./Interest.module.css";
 
+const FRASER = "John Fraser SS";
+const INSTAGRAM_URL = "https://www.instagram.com/fraser.hacks/";
+const CS_CLUB_URL = "https://cs.fraserhacks.dev";
+
 const GRADES = ["9", "10", "11", "12", "Other"];
 
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -135,6 +139,32 @@ export function InterestModal({ onClose }) {
               <span className={styles.highlight}>{form.email.trim()}</span>{" "}
               when FraserHacks 2027 details go live.
             </p>
+            {schoolValue === FRASER && (
+              <p className={styles.subtitle}>
+                Since you're at Fraser, check out the{" "}
+                <a
+                  className={styles.link}
+                  href={CS_CLUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  John Fraser CS Club
+                </a>
+                !
+              </p>
+            )}
+            <p className={styles.subtitle}>
+              Follow{" "}
+              <a
+                className={styles.link}
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @fraser.hacks
+              </a>{" "}
+              on Instagram for updates.
+            </p>
             <button type="button" onClick={onClose} className={styles.submit}>
               Done
             </button>
@@ -145,7 +175,8 @@ export function InterestModal({ onClose }) {
               FraserHacks 2027
             </h2>
             <p className={styles.subtitle}>
-              Drop your info and we'll reach out first when registration opens.
+              Coming <span className={styles.highlight}>March 2027</span>. Drop
+              your info and we'll reach out first when registration opens.
             </p>
 
             <form onSubmit={handleSubmit} noValidate>
