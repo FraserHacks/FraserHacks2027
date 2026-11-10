@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/interest_signups?select=id&limit=1`,
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/bucket`,
     {
       headers: {
         apikey: key,
